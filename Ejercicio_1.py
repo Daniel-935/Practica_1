@@ -1,4 +1,7 @@
+from Perceptron import Perceptron
+
 import csv
+import numpy as np
 
 trainingSet = []
 with open('XOR_trn.csv','r') as trainFile:
@@ -9,4 +12,16 @@ with open('XOR_trn.csv','r') as trainFile:
     for row in csvReader:
         trainingSet.append(row)
 
-print(trainingSet)
+
+#*Se crea el objeto perceptron
+myPerceptron = Perceptron()
+#* Se inicializan las variables iniciales
+myPerceptron.setBias(np.random.rand())
+myPerceptron.setW0(np.random.rand())
+myPerceptron.setW1(np.random.rand())
+#* Inicia el perceptron
+myPerceptron.startPerceptron(trainingSet)
+
+#*Una vez terminado, muestra los pesos finales y el bias
+
+print(f"Pesos finales. w0 = {myPerceptron.getW0()} w1 = {myPerceptron.getW1()} y Bias = {myPerceptron.getBias()}")
